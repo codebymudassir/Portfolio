@@ -24,41 +24,51 @@ import {
 } from 'react-icons/si';
 import { useTheme } from '../context/ThemeContext';
 
+// Each skill carries its official brand color.
+// `darkColor` is used in dark mode for brands whose logo is near-black
+// (or too dark to read on a dark surface).
 const skillsData = [
   {
     category: "Frontend",
     skills: [
-      { name: "Next.js", icon: <SiNextdotjs /> },
-      { name: "React.js", icon: <FaReact /> },
-      { name: "TypeScript", icon: <SiTypescript /> },
-      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-      { name: "JavaScript", icon: <FaJs /> },
-      { name: "HTML5", icon: <FaHtml5 /> },
-      { name: "CSS3", icon: <FaCss3Alt /> },
+      { name: "Next.js", icon: <SiNextdotjs />, color: "#000000", darkColor: "#ffffff" },
+      { name: "React.js", icon: <FaReact />, color: "#61dafb" },
+      { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6", darkColor: "#4a9eff" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06b6d4" },
+      { name: "JavaScript", icon: <FaJs />, color: "#f7df1e" },
+      { name: "HTML5", icon: <FaHtml5 />, color: "#e34f26" },
+      { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6", darkColor: "#4b9fe1" },
     ]
   },
   {
     category: "Backend",
     skills: [
-      { name: "Node.js", icon: <FaNodeJs /> },
-      { name: "Express.js", icon: <SiExpress /> },
-      { name: "MongoDB", icon: <SiMongodb /> },
-      { name: "PostgreSQL", icon: <SiPostgresql /> },
-      { name: "Redis", icon: <SiRedis /> },
+      { name: "Node.js", icon: <FaNodeJs />, color: "#5fa04e" },
+      { name: "Express.js", icon: <SiExpress />, color: "#000000", darkColor: "#ffffff" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
+      { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169e1", darkColor: "#6b8aef" },
+      { name: "Redis", icon: <SiRedis />, color: "#ff4438" },
     ]
   },
   {
     category: "Tools & DevOps",
     skills: [
-      { name: "Git", icon: <FaGitAlt /> },
-      { name: "GitHub", icon: <FaGithub /> },
-      { name: "Docker", icon: <FaDocker /> },
-      { name: "Kubernetes", icon: <SiKubernetes /> },
-      { name: "Postman", icon: <SiPostman /> },
-      { name: "LangChain", icon: <SiLangchain /> },
+      { name: "Git", icon: <FaGitAlt />, color: "#f05032" },
+      { name: "GitHub", icon: <FaGithub />, color: "#181717", darkColor: "#ffffff" },
+      { name: "Docker", icon: <FaDocker />, color: "#2496ed" },
+      { name: "Kubernetes", icon: <SiKubernetes />, color: "#326ce5", darkColor: "#6b9bff" },
+      { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
+      { name: "LangChain", icon: <SiLangchain />, color: "#1c3c3c", darkColor: "#4fd1a5" },
     ]
   }
 ];
+
+// Resolve the right brand color for the active theme
+const getSkillColor = (skill, theme) =>
+  theme === 'light' ? skill.color : (skill.darkColor || skill.color);
+
+// Append an alpha channel to a 6-digit hex brand color (e.g. "#2496ed" + "40")
+const withAlpha = (hex, alpha) => `${hex}${alpha}`;
 
 // Helper component for each independent skill cluster
 const SkillCluster = ({ category, theme, hoveredSkill, setHoveredSkill }) => {
@@ -107,6 +117,8 @@ const SkillCluster = ({ category, theme, hoveredSkill, setHoveredSkill }) => {
         const x = center + radius * Math.cos(angle);
         const y = center + radius * Math.sin(angle);
         const nodeId = `${category.category}-${i}`;
+        const skillColor = getSkillColor(skill, theme);
+        const skillGlow = withAlpha(skillColor, '55');
 
         return (
           <div
@@ -127,19 +139,19 @@ const SkillCluster = ({ category, theme, hoveredSkill, setHoveredSkill }) => {
               id={theme}
               className='w-full h-full rounded-full flex items-center justify-center text-xl md:text-2xl transition-all duration-300 cursor-pointer shadow-lg'
               style={{
-                border: '2px solid var(--border-default)',
+                border: `2px solid ${withAlpha(skillColor, '40')}`,
                 backgroundColor: 'var(--surface-2)',
-                color: 'var(--text-primary)'
+                color: skillColor
               }}
               onMouseEnter={(e) => {
                 setHoveredSkill(nodeId);
-                e.currentTarget.style.borderColor = 'var(--accent-primary)';
-                e.currentTarget.style.boxShadow = '0 0 20px var(--accent-glow)';
+                e.currentTarget.style.borderColor = skillColor;
+                e.currentTarget.style.boxShadow = `0 0 20px ${skillGlow}`;
                 e.currentTarget.style.transform = 'scale(1.1)';
               }}
               onMouseLeave={(e) => {
                 setHoveredSkill(null);
-                e.currentTarget.style.borderColor = 'var(--border-default)';
+                e.currentTarget.style.borderColor = withAlpha(skillColor, '40');
                 e.currentTarget.style.boxShadow = 'var(--shadow-md)';
                 e.currentTarget.style.transform = 'scale(1)';
               }}
