@@ -9,12 +9,13 @@ import DigitalTimer from './DigitalTimer';
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const navItems = [
-    { id: 1, text: "Home" },
-    { id: 2, text: "About" },
-    { id: 3, text: "Projects" },
-    { id: 6, text: "Skills" },
-    { id: 7, text: "Experience" },
-    { id: 5, text: "Contact" },
+    { id: 1, text: "Home", target: "home" },
+    { id: 2, text: "About", target: "about" },
+    { id: 8, text: "Services", target: "services" },
+    { id: 3, text: "Projects", target: "projects" },
+    { id: 6, text: "Skills", target: "skills" },
+    { id: 7, text: "Experience", target: "experience" },
+    { id: 5, text: "Contact", target: "contact" },
   ];
 
   const [theme, setTheme] = useTheme();
@@ -61,13 +62,13 @@ function Navbar() {
 
           <div>
             <ul className="hidden md:flex space-x-8">
-              {navItems.map(({ id, text }) => (
+              {navItems.map(({ id, text, target }) => (
                 <li
                   className="hover:scale-105 hover:underline transition-all duration-300 cursor-pointer"
                   key={id}
                 >
                   <Link
-                    to={text}
+                    to={target}
                     smooth={true}
                     duration={500}
                     offset={-70}
@@ -96,14 +97,14 @@ function Navbar() {
                 <DigitalTimer />
               </div>
               <ul className="flex flex-col items-center justify-center space-y-8 h-[60vh] text-2xl">
-                {navItems.map(({ id, text }) => (
+                {navItems.map(({ id, text, target }) => (
                   <li
                     className="hover:scale-105 duration-200 font-semibold cursor-pointer"
                     key={id}
                   >
                     <Link
                       onClick={() => setMenu(!menu)}
-                      to={text}
+                      to={target}
                       smooth={true}
                       duration={500}
                       offset={-70}

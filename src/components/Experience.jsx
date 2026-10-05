@@ -31,7 +31,7 @@ const Experience = () => {
   const [theme] = useTheme();
 
   return (
-    <section id='Experience' className='py-20 px-6 md:px-12 lg:px-24 transition-colors duration-300 overflow-hidden'>
+    <section id="experience" className='py-20 px-6 md:px-12 lg:px-24 transition-colors duration-300 overflow-hidden'>
       <div className='max-w-6xl mx-auto'>
         {/* Section Title */}
         <motion.div

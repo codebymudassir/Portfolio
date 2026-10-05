@@ -31,7 +31,7 @@ const About = () => {
 
     return (
         <div
-            id={theme}
+            id="about"
             name='About'
             className='w-full py-20'
             style={{ backgroundColor: 'transparent' }}

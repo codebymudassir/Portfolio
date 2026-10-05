@@ -5,6 +5,7 @@ import CircularLoader from './components/CircularLoader' // 👈 import the load
 
 const About = React.lazy(() => import('./components/About'));
 const Portfolio = React.lazy(() => import('./components/Portfolio'));
+const Services = React.lazy(() => import('./components/Services'));
 const Motion = React.lazy(() => import('./components/Motion'));
 const Skills = React.lazy(() => import('./components/Skills.jsx'));
 const Contact = React.lazy(() => import('./components/Contact'));
@@ -79,6 +80,7 @@ const App = () => {
               <Motion />
               <hr className='mt-0' />
               <About />
+              <Services />
               <Portfolio />
               <Skills />
               <hr className='mb-10 m-2 mx-4'/>
