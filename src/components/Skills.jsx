@@ -220,7 +220,7 @@ const Skills = () => {
 
   return (
     <section
-      id="Skills"
+      id="skills"
       className="py-20 relative overflow-hidden min-h-screen flex flex-col justify-center"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

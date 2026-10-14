@@ -127,8 +127,7 @@ const Portfolio = () => {
 
   return (
     <div
-      id={theme}
-      name="Projects"
+      id="projects"
       className="w-full py-24 px-4 md:px-12 relative overflow-hidden"
       style={{ backgroundColor: 'transparent' }}
     >

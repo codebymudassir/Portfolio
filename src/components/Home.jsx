@@ -41,9 +41,7 @@ const Home = () => {
 
     return (
         <div
-            name='Home'
-            id={theme}
-            // Keep background transparent so the star field shows through
+            id="home"
             style={{ backgroundColor: 'transparent' }}
             className='home-section p-3 w-full'
         >

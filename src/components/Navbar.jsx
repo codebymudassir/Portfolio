@@ -70,7 +70,7 @@ function Navbar() {
                   <Link
                     to={target}
                     smooth={true}
-                    duration={500}
+                    duration={200}
                     offset={-70}
                     activeClass="active"
                   >
@@ -106,7 +106,7 @@ function Navbar() {
                       onClick={() => setMenu(!menu)}
                       to={target}
                       smooth={true}
-                      duration={500}
+                      duration={200}
                       offset={-70}
                       activeClass="active"
                     >
